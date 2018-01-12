@@ -31,7 +31,10 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 
 INC_NAME = fdf.h
 
-SRC_NAME = main.c
+SRC_NAME = main.c \
+	   key_funct.c \
+	   move.c \
+	   palette.c
 
 all: $(NAME)
 
