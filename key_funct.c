@@ -43,26 +43,13 @@ static void	free_data(t_all *all)
 */static void	key_rotate(int key, t_all *all)
 {
 	if (key == 123 || key == 65361)
-	{
 		all->p.x1 *= 1.1;
-		all->p.x2 *= 0.9;
-
-	} 
 	if (key == 124 || key == 65362)
-	{
 		all->p.y1 *= 1.1;
-		all->p.y2 *= 0.9;
-	}
 	if (key == 125 || key == 65363)
-	{
 		all->p.x1 *= 0.9;
-		all->p.x2 *= 1.1;
-	}
 	if (key == 126 || key == 65364)
-	{
 		all->p.y1 *= 0.9;
-		all->p.y2 *= 1.1;
-	}
 	/*if (key == 0)
 		all->window.rotate_z -= 0.1;
 	if (key == 2)

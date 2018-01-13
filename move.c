@@ -2,11 +2,6 @@
 
 void		*move(t_all *a)
 {
-	float	image_x = a->p.x2 - a->p.x1;
-		image_x = image_x * a->p.zoom;
-	float	image_y = a->p.y2 - a->p.y1;
-		image_y = image_y * a->p.zoom;
-		
 	float	c_r;
 	float	c_i;
 	float	z_r;
@@ -20,10 +15,10 @@ void		*move(t_all *a)
 	color = (int*)malloc(sizeof(int) * a->p.i_max);
 	color = palette(a->p.select, color, a->p.i_max);
 	x = 0;
-	while (x < 1600)
+	while (x < WIDTH)
 	{
-		y = 0;	
-		while (y < 900)
+		y = 0;
+		while (y < HEIGHT)
 		{
 			c_r = x / a->p.zoom + a->p.x1;
 			c_i = y / a->p.zoom + a->p.y1;

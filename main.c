@@ -5,21 +5,18 @@ int		main(int argc, char **argv)
 	t_params	p;
 	(void)argc;
 	t_window	win;
+
 	win.mlx = mlx_init();
-	win.win = mlx_new_window(win.mlx, 1600, 900, "Fractol");
+	win.win = mlx_new_window(win.mlx, WIDTH, HEIGHT, "Fractol");
+
 	p.i_max = ft_atoi(argv[1]);
-	
 	p.x1 = -2.1;
 	p.x2 = 0.6;
 	p.y1 = -1.2;
 	p.y2 = 1.2;
 	p.zoom = 400;
 	p.select = 1;
-	float		image_x = p.x2 - p.x1;
-			image_x = image_x * p.zoom;
-	float		image_y = p.y2 - p.y1;
-			image_y = image_y * p.zoom;
-		
+
 	float	c_r;
 	float	c_i;
 	float	z_r;
@@ -29,14 +26,14 @@ int		main(int argc, char **argv)
 	int	y;
 	float	tmp;
 	int	*color;
-	
+
 	color = (int*)malloc(sizeof(int) * p.i_max);
 	color = palette(p.select, color, p.i_max);
 	x = 0;
-	while (x < 1600)
+	while (x < WIDTH)
 	{
-		y = 0;	
-		while (y < 900)
+		y = 0;
+		while (y < HEIGHT)
 		{
 			c_r = x / p.zoom + p.x1;
 			c_i = y / p.zoom + p.y1;
@@ -62,6 +59,7 @@ int		main(int argc, char **argv)
 	all.p = p;
 	free(color);
 	mlx_key_hook(win.win, key_funct, &all);
+	mlx_mouse_hook(win.win, mouse_funct, &all);
 	mlx_loop(win.mlx);
 	return (0);
 }

@@ -34,7 +34,8 @@ INC_NAME = fdf.h
 SRC_NAME = main.c \
 	   key_funct.c \
 	   move.c \
-	   palette.c
+	   palette.c \
+		 mouse_funct.c
 
 all: $(NAME)
 
