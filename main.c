@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ebertin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/15 15:47:12 by ebertin           #+#    #+#             */
+/*   Updated: 2018/01/15 17:56:45 by ebertin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
+
 int		main(int argc, char **argv)
 {
 	t_all		all;
@@ -8,13 +21,15 @@ int		main(int argc, char **argv)
 
 	win.mlx = mlx_init();
 	win.win = mlx_new_window(win.mlx, WIDTH, HEIGHT, "Fractol");
+	p.i.ima = mlx_new_image(win.mlx, WIDTH, HEIGHT);
+	p.i.str = mlx_get_data_addr(p.i.ima, &p.i.bpp, &p.i.sl, &p.i.e);
 
 	p.i_max = ft_atoi(argv[1]);
 	p.x1 = -2.1;
 	p.x2 = 0.6;
 	p.y1 = -1.2;
 	p.y2 = 1.2;
-	p.zoom = 400;
+	p.zoom = 200;
 	p.select = 1;
 
 	float	c_r;
@@ -47,14 +62,14 @@ int		main(int argc, char **argv)
 				z_i = 2 * z_i * tmp + c_i;
 				i++;
 			}
-			if (i == p.i_max)
-				(void)i;//mlx_pixel_put(win.mlx, wiin.win, x + 10, y + 10, 0xFFFFFF);
-			else
-				mlx_pixel_put(win.mlx, win.win, x + 10, y + 10, color[i]);
+			
+			if (i != p.i_max)
+				put_pixel_image(x, y, color[i], &p.i);
 			y++;
 		}
 		x++;
 	}
+	mlx_put_image_to_window(win.mlx, win.win, p.i.ima, 0, 0);
 	all.win = win;
 	all.p = p;
 	free(color);

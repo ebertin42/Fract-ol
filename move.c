@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ebertin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/15 15:47:33 by ebertin           #+#    #+#             */
+/*   Updated: 2018/01/15 17:56:39 by ebertin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 void		*move(t_all *a)
@@ -11,6 +23,9 @@ void		*move(t_all *a)
 	int	y;
 	float	tmp;
 	int	*color;
+
+    a->p.i.ima = mlx_new_image(a->win.mlx, WIDTH, HEIGHT);
+    a->p.i.str = mlx_get_data_addr(a->p.i.ima, &a->p.i.bpp, &a->p.i.sl, &a->p.i.e);
 
 	color = (int*)malloc(sizeof(int) * a->p.i_max);
 	color = palette(a->p.select, color, a->p.i_max);
@@ -32,14 +47,13 @@ void		*move(t_all *a)
 				z_i = 2 * z_i * tmp + c_i;
 				i++;
 			}
-			if (i == a->p.i_max)
-				(void)i;//mlx_pixel_put(a->win.mlx, a->win.win, x + 10, y + 10, 0xFFFFFF);
-			else
-				mlx_pixel_put(a->win.mlx, a->win.win, x + 10, y + 10, color[i]);
+			if (i != a->p.i_max)
+				put_pixel_image(x, y, color[i], &a->p.i);
 			y++;
 		}
 		x++;
 	}
+    mlx_put_image_to_window(a->win.mlx, a->win.win, a->p.i.ima, 0, 0);
 	free(color);
 	return (a);
 }

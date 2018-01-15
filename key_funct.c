@@ -6,7 +6,7 @@
 /*   By: ebertin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 12:12:29 by ebertin           #+#    #+#             */
-/*   Updated: 2018/01/06 18:44:05 by ebertin          ###   ########.fr       */
+/*   Updated: 2018/01/15 15:11:27 by ebertin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ static void	free_data(t_all *all)
 {
 	if (key == 123 || key == 65361)
 		all->p.x1 *= 1.1;
-	if (key == 124 || key == 65362)
+	if (key == 126 || key == 65362)
 		all->p.y1 *= 1.1;
-	if (key == 125 || key == 65363)
+	if (key == 124 || key == 65363)
 		all->p.x1 *= 0.9;
-	if (key == 126 || key == 65364)
+	if (key == 125 || key == 65364)
 		all->p.y1 *= 0.9;
 	/*if (key == 0)
 		all->window.rotate_z -= 0.1;
@@ -60,14 +60,14 @@ static void	free_data(t_all *all)
 
 static void	key_re(int key, t_all *a)
 {
-	if (key == 65450)
+	if (key == 67)
 		if (a->p.i_max * 10 > 0)
 			a->p.i_max *= 10;
-	if (key == 65455)
+	if (key == 75)
 		if (a->p.i_max / 10 > 0)
 			a->p.i_max /= 10;
-	if (key >= 49 && key <= 51)
-		a->p.select = key - 48;
+	if (key >= 18 && key <= 20)
+		a->p.select = key - 17;
 	mlx_clear_window(a->win.mlx, a->win.win);
 	move(a);
 }
@@ -85,7 +85,7 @@ int			key_funct(int key, void *param)
 	}
 	if ((key >= 123 && key <= 126) || (key >= 65361 && key <= 65364))
 		key_rotate(key, all);
-	if ((key == 65450 || key == 65455) || (key >= 49 && key <= 51))
+	if ((key == 67 || key == 75) || (key >= 18 && key <= 20))
 		key_re(key, all);
 	return (0);
 }

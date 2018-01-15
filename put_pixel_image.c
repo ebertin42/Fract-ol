@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   palette.c                                          :+:      :+:    :+:   */
+/*   put_pixel_image.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebertin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/15 15:47:57 by ebertin           #+#    #+#             */
-/*   Updated: 2018/01/15 15:48:03 by ebertin          ###   ########.fr       */
+/*   Created: 2018/01/15 15:51:34 by ebertin           #+#    #+#             */
+/*   Updated: 2018/01/15 17:51:31 by ebertin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	*palette(int select, int *color, int i_max)
+void	put_pixel_image(int x, int y, int color, t_image *i)
 {
-	int i;
+	unsigned char r;
+	unsigned char g;
+	unsigned char b;
 
-	i = 0;
-	if (select == 1)
-		while (++i < i_max)
-			color[i] = 0x0000FF << i >> 10;
-	if (select == 2)
-		while (++i < i_max)
-			color[i] = i * 255 * i_max;
-	if (select == 3)
-		while (++i < i_max)
-			color[i] = 0x0000FF << i;
-	return (color);
+	r = (color >> 16) & 0xff;
+	g = (color >> 8) & 0xff;
+	b = color & 0xff;
+	i->str[(x * 4) + (WIDTH * 4 * y)] = b;
+	i->str[(x * 4) + (WIDTH * 4 * y) + 1] = g;
+	i->str[(x * 4) + (WIDTH * 4 * y) + 2] = r;
+	i->str[(x * 4) + (WIDTH * 4 * y) + 3] = 0;
 }
+
