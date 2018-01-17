@@ -31,6 +31,7 @@ int		main(int argc, char **argv)
 	p.y2 = 1.2;
 	p.zoom = 200;
 	p.select = 1;
+	p.fractal = 1;
 
 	float	c_r;
 	float	c_i;
@@ -62,7 +63,7 @@ int		main(int argc, char **argv)
 				z_i = 2 * z_i * tmp + c_i;
 				i++;
 			}
-			
+
 			if (i != p.i_max)
 				put_pixel_image(x, y, color[i], &p.i);
 			y++;

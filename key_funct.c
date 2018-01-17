@@ -43,19 +43,23 @@ static void	free_data(t_all *all)
 */static void	key_rotate(int key, t_all *all)
 {
 	if (key == 123 || key == 65361)
-		all->p.x1 *= 1.1;
+		all->p.x1 += 50 / all->p.zoom;
 	if (key == 126 || key == 65362)
-		all->p.y1 *= 1.1;
+		all->p.y1 += 50 / all->p.zoom;
 	if (key == 124 || key == 65363)
-		all->p.x1 *= 0.9;
+		all->p.x1 -= 50 / all->p.zoom;
 	if (key == 125 || key == 65364)
-		all->p.y1 *= 0.9;
+		all->p.y1 -= 50 / all->p.zoom;
 	/*if (key == 0)
 		all->window.rotate_z -= 0.1;
 	if (key == 2)
 		all->window.rotate_z += 0.1;
-	*/mlx_clear_window(all->win.mlx, all->win.win);
-	move(all);
+	*/
+	if (all->p.fractal == 1)
+		move(all);
+	else
+		julia(all);
+
 }
 
 static void	key_re(int key, t_all *a)
@@ -68,8 +72,24 @@ static void	key_re(int key, t_all *a)
 			a->p.i_max /= 10;
 	if (key >= 18 && key <= 20)
 		a->p.select = key - 17;
-	mlx_clear_window(a->win.mlx, a->win.win);
-	move(a);
+	if (a->p.fractal == 1)
+		move(a);
+	else
+		julia(a);
+}
+
+static void	key_fractal(int key, t_all *a)
+{
+	if (key == 106)
+	{
+		a->p.fractal = 2;
+		julia(a);
+	}
+	if (key == 109)
+	{
+		a->p.fractal = 1;
+		move(a);
+	}
 }
 
 int			key_funct(int key, void *param)
@@ -87,5 +107,7 @@ int			key_funct(int key, void *param)
 		key_rotate(key, all);
 	if ((key == 67 || key == 75) || (key >= 18 && key <= 20))
 		key_re(key, all);
+	if (key == 106 || key == 109)
+		key_fractal(key, all);
 	return (0);
 }

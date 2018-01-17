@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-#include "minilibx_macos/mlx.h"
+#include "minilibx/mlx.h"
 #include <stdio.h>
 # define WIDTH 900
 # define HEIGHT 600
@@ -39,6 +39,7 @@ typedef struct		s_params
 	float		y2;
 	float		zoom;
 	int			select;
+	int			fractal;
 	t_image		i;
 }					t_params;
 
@@ -54,4 +55,4 @@ void		*move(t_all *all);
 int			*palette(int select, int *color, int i_max);
 int			mouse_funct(int key, int x, int y, t_all *a);
 void		put_pixel_image(int x, int y, int color, t_image *i);
-
+void		*julia(t_all *all);

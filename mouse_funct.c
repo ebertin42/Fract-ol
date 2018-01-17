@@ -48,7 +48,9 @@ if (key == 5)
 /*printf("%f\n", a->p.x1);
 printf("%f\n", a->p.y1);
 printf("%f\n", a->p.zoom);*/
-mlx_clear_window(a->win.mlx, a->win.win);
-move(a);
+if (a->p.fractal == 1)
+  move(a);
+else
+  julia(a);
 return (0);
 }

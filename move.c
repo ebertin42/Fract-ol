@@ -53,6 +53,7 @@ void		*move(t_all *a)
 		}
 		x++;
 	}
+	mlx_clear_window(a->win.mlx, a->win.win);
     mlx_put_image_to_window(a->win.mlx, a->win.win, a->p.i.ima, 0, 0);
 	free(color);
 	return (a);
