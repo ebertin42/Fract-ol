@@ -1,6 +1,6 @@
 #include "fractol.h"
 
-void		*julia(t_all *a)
+void		*k_julia(t_all *a)
 {
 	float	z_r;
 	float	z_i;
@@ -21,8 +21,6 @@ void		*julia(t_all *a)
 		y = 0;
 		while (y < HEIGHT)
 		{
-			a->j.c_r = 0.285;
-			a->j.c_i = 0.01;
 			z_r = x / a->p.zoom + a->p.x1;
 			z_i = y / a->p.zoom + a->p.y1;
 			i = 0;

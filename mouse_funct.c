@@ -51,6 +51,6 @@ printf("%f\n", a->p.zoom);*/
 if (a->p.fractal == 1)
   move(a);
 else
-  julia(a);
+  m_julia(a, x, y);
 return (0);
 }

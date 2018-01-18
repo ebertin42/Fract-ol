@@ -1,6 +1,6 @@
 #include "fractol.h"
 
-void		*julia(t_all *a)
+void		*m_julia(t_all *a, int x_h, int y_h)
 {
 	float	z_r;
 	float	z_i;
@@ -16,13 +16,13 @@ void		*julia(t_all *a)
 	color = (int*)malloc(sizeof(int) * a->p.i_max);
 	color = palette(a->p.select, color, a->p.i_max);
 	x = 0;
+  a->j.c_r = ((WIDTH / 2 - x_h) / (float)WIDTH ) * 2;
+  a->j.c_i = ((HEIGHT - y_h) / (float)HEIGHT);
 	while (x < WIDTH)
 	{
 		y = 0;
 		while (y < HEIGHT)
 		{
-			a->j.c_r = 0.285;
-			a->j.c_i = 0.01;
 			z_r = x / a->p.zoom + a->p.x1;
 			z_i = y / a->p.zoom + a->p.y1;
 			i = 0;

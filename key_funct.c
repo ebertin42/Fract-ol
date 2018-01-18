@@ -58,7 +58,7 @@ static void	free_data(t_all *all)
 	if (all->p.fractal == 1)
 		move(all);
 	else
-		julia(all);
+		k_julia(all);
 
 }
 
@@ -75,7 +75,7 @@ static void	key_re(int key, t_all *a)
 	if (a->p.fractal == 1)
 		move(a);
 	else
-		julia(a);
+		k_julia(a);
 }
 
 static void	key_fractal(int key, t_all *a)

@@ -43,10 +43,17 @@ typedef struct		s_params
 	t_image		i;
 }					t_params;
 
+typedef struct		s_julia
+{
+	float						c_r;
+	float						c_i;
+}									t_julia;
+
 typedef struct		s_all
 {
 	t_window	win;
 	t_params	p;
+	t_julia		j;
 }									t_all;
 
 int			main(int argc, char **argv);
@@ -56,3 +63,5 @@ int			*palette(int select, int *color, int i_max);
 int			mouse_funct(int key, int x, int y, t_all *a);
 void		put_pixel_image(int x, int y, int color, t_image *i);
 void		*julia(t_all *all);
+void		*m_julia(t_all *a, int x_h, int y_h);
+void		*k_julia(t_all *a);
